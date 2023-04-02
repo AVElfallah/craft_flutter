@@ -14,6 +14,7 @@ class UserAuthLoginData {
   //reset the database
   void reset() {
     box.erase();
+    box.save();
   }
 
   //save the token in the database
@@ -25,10 +26,8 @@ class UserAuthLoginData {
     box.write('pin_code', authModel.client?.pincode);
     box.write('status', authModel.client?.status);
     box.write('governorate_id', authModel.client?.governorateID);
-    box.write(
-        'created_at', authModel.client?.createdAt?.millisecondsSinceEpoch);
-    box.write(
-        'updated_at', authModel.client?.updatedAt?.millisecondsSinceEpoch);
+    box.write('created_at', authModel.client?.createdAt?.toIso8601String());
+    box.write('updated_at', authModel.client?.updatedAt?.toIso8601String());
     box.save();
   }
 
@@ -45,12 +44,12 @@ class UserAuthLoginData {
             'pin_code': box.read('pin_code'),
             'status': box.read('status'),
             'governorate_id': box.read('governorate_id'),
-            'created_at': DateTime.fromMillisecondsSinceEpoch(
-              box.read<int>('created_at') ?? 0,
+            'created_at': DateTime.tryParse(
+              box.read<String>('created_at') ?? "",
             ),
-            'updated_at': DateTime.fromMillisecondsSinceEpoch(
-              box.read<int>('updated_at') ?? 0,
-            ),
+            'updated_at': DateTime.tryParse(
+              box.read<String>('updated_at') ?? "",
+            )!,
           },
         },
       );

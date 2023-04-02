@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:math';
 
 class SingupModel {
   String? userName;
@@ -9,7 +8,7 @@ class SingupModel {
   String? passwordConfirmation;
   String? phoneNumber;
   int? governorateId;
-  int? id = Random().nextInt(1000000);
+  int? id = 1;
   SingupModel({
     this.userName,
     this.email,

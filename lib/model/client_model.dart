@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class ClientModel {
-  String? id;
+  int? id;
   String? userName;
   String? email;
   String? pincode;
@@ -36,7 +36,7 @@ class ClientModel {
 
   factory ClientModel.fromMap(Map<String, dynamic> map) {
     return ClientModel(
-      id: map['id'] != null ? map['id'] as String : null,
+      id: map['id'] ?? 0,
       userName: map['user_name'] != null ? map['user_name'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       pincode: map['pin_code'] != null ? map['pin_code'] as String : null,
@@ -44,11 +44,10 @@ class ClientModel {
       governorateID: map['governorate_id'] != null
           ? map['governorate_id'] as String
           : null,
-      createdAt: map['created_at'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['created_at'] as int)
-          : null,
+      createdAt:
+          map['created_at'] != null ? DateTime.parse(map['created_at']) : null,
       updatedAt: map['updated_at'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updated_at'] as int)
+          ? DateTime.parse(map['updated_at'] as String)
           : null,
     );
   }
@@ -59,7 +58,7 @@ class ClientModel {
       ClientModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   ClientModel copyWith({
-    String? id,
+    int? id,
     String? userName,
     String? email,
     String? pincode,

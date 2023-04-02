@@ -1,6 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:hyah_karima/router/app_router.dart';
+
+import '../data/external/singup_auth.dart';
+import '../data/internal/user_login_data.dart';
+import '../model/auth_model.dart';
+import '../model/singup_model.dart';
 
 class SingUpController extends ChangeNotifier {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -9,7 +15,53 @@ class SingUpController extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
-  TextEditingController governorateController = TextEditingController();
+  bool isLoading = false;
+  int governrateValue = 1;
+  changeGovernrate(int? st) {
+    governrateValue = st!;
+    notifyListeners();
+  }
+
+  void register(BuildContext context) async {
+    if (formkey.currentState!.validate()) {
+      isLoading = true;
+      notifyListeners();
+      var auth = await SingUpAuth.instance.regesterNewUser(
+        SingupModel(
+          userName: nameController.text,
+          email: emailController.text,
+          phoneNumber: numberController.text,
+          governorateId: governrateValue,
+          password: passwordController.text,
+          passwordConfirmation: passwordController.text,
+        ),
+      );
+      if (auth.runtimeType == AuthModel) {
+        isLoading = false;
+        notifyListeners();
+        UserAuthLoginData.instance.setAuthModel(auth as AuthModel);
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushReplacementNamed(MyRouter.homePage);
+      } else {
+        isLoading = false;
+        notifyListeners();
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              "error",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    }
+  }
 
   String? govValidator(value) {
     if (value!.isEmpty) {

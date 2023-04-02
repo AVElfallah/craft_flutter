@@ -7,3 +7,10 @@ List<Color> colorsToUse = [
   Colors.indigo,
   Colors.orange,
 ];
+
+Color iconsColor = const Color.fromARGB(
+  255,
+  1,
+  124,
+  106,
+);
