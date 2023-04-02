@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hyah_karima/data/external/login_auth.dart';
+import 'package:hyah_karima/data/internal/user_login_data.dart';
+import 'package:hyah_karima/model/auth_model.dart';
 
 import '../router/app_router.dart';
 
@@ -7,16 +10,51 @@ class LoginPageController extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  loginPressed(BuildContext context) {
+  bool isLoading = false;
+
+  loginPressed(BuildContext context) async {
     if (formkey.currentState!.validate()) {
-      debugPrint("sucess");
-      emailController.clear();
-      passwordController.clear();
-      Navigator.of(context).pushNamed(MyRouter.homePage);
+      isLoading = true;
+      notifyListeners();
+      var auth = await LoginAuth.instance.login(
+        emailController.text,
+        passwordController.text,
+      );
+      if (auth.runtimeType == AuthModel) {
+        isLoading = false;
+        notifyListeners();
+        UserAuthLoginData.instance.setAuthModel(auth as AuthModel);
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushReplacementNamed(MyRouter.homePage);
+      } else {
+        isLoading = false;
+        notifyListeners();
+
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              "Login failed check your email and password",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("validation failed"),
+          backgroundColor: Colors.red,
+          content: Text(
+            "Fill the form correctly",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hyah_karima/model/auth_model.dart';
 import 'package:hyah_karima/router/app_router.dart';
+
+import 'data/internal/user_login_data.dart';
 
 void main() async {
   await GetStorage.init('app_settings');
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    AuthModel? authModel = UserAuthLoginData.instance.getAuthModelIfFound();
     return MaterialApp(
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
@@ -21,6 +25,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       routes: MyRouter.routes,
+      initialRoute:
+          authModel == null ? MyRouter.introScreen : MyRouter.homePage,
     );
   }
 }

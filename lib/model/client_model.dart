@@ -7,7 +7,7 @@ class ClientModel {
   String? email;
   String? pincode;
   bool? status;
-  String? governorateID;
+  int? governorateID;
   DateTime? createdAt;
   DateTime? updatedAt;
   ClientModel({
@@ -35,15 +35,16 @@ class ClientModel {
   }
 
   factory ClientModel.fromMap(Map<String, dynamic> map) {
+    var govid = map['governorate_id'].runtimeType == String
+        ? int.parse(map['governorate_id'])
+        : map['governorate_id'];
     return ClientModel(
       id: map['id'] ?? 0,
       userName: map['user_name'] != null ? map['user_name'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       pincode: map['pin_code'] != null ? map['pin_code'] as String : null,
-      status: map['status'] != null ? map['status'] as bool : null,
-      governorateID: map['governorate_id'] != null
-          ? map['governorate_id'] as String
-          : null,
+      status: map['status'] != null ? map['status'] == 1 : null,
+      governorateID: govid,
       createdAt:
           map['created_at'] != null ? DateTime.parse(map['created_at']) : null,
       updatedAt: map['updated_at'] != null
@@ -63,7 +64,7 @@ class ClientModel {
     String? email,
     String? pincode,
     bool? status,
-    String? governorateID,
+    int? governorateID,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {

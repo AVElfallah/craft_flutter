@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:hyah_karima/extensions/constant.dart';
 import 'package:hyah_karima/model/auth_model.dart';

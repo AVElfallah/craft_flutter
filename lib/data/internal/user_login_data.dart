@@ -44,12 +44,8 @@ class UserAuthLoginData {
             'pin_code': box.read('pin_code'),
             'status': box.read('status'),
             'governorate_id': box.read('governorate_id'),
-            'created_at': DateTime.tryParse(
-              box.read<String>('created_at') ?? "",
-            ),
-            'updated_at': DateTime.tryParse(
-              box.read<String>('updated_at') ?? "",
-            )!,
+            'created_at': box.read<String>('created_at'),
+            'updated_at': box.read<String>('updated_at'),
           },
         },
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hyah_karima/data/internal/user_login_data.dart';
 import 'package:hyah_karima/router/app_router.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -120,6 +121,7 @@ class _SettingState extends State<SettingsPage> {
                   ),
                 ),
                 onPressed: () {
+                  UserAuthLoginData.instance.reset();
                   Navigator.pushNamed(
                     context,
                     MyRouter.introScreen,
@@ -129,9 +131,15 @@ class _SettingState extends State<SettingsPage> {
                   "sign out",
                   selectionColor: Colors.blue,
                   style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                      color: Color.fromARGB(255, 6, 6, 6)),
+                    fontSize: 20,
+                    letterSpacing: 2,
+                    color: Color.fromARGB(
+                      255,
+                      6,
+                      6,
+                      6,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -210,7 +218,10 @@ class _SettingState extends State<SettingsPage> {
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey[600])),
-            const Icon(Icons.arrow_forward_ios, color: Colors.grey)
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+            )
           ],
         ),
       ),
