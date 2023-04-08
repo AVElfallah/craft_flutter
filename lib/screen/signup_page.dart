@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hyah_karima/data/external/singup_auth.dart';
 import 'package:hyah_karima/extensions/assestent_extension.dart';
 import 'package:hyah_karima/extensions/colors.dart';
 
 import 'package:hyah_karima/router/app_router.dart';
 import 'package:provider/provider.dart';
 import 'package:hyah_karima/controller/singup_controller.dart';
-import '../extensions/colors.dart';
 import '../extensions/governrates.dart';
 
 class SingupPage extends StatefulWidget {

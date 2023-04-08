@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:hyah_karima/extensions/constant.dart';
 import 'package:hyah_karima/model/auth_model.dart';
 import 'package:hyah_karima/model/singup_model.dart';
@@ -25,10 +26,10 @@ class SingUpAuth {
     );
 
     if (reapose.data['status'] == 0) {
-      print(reapose.data);
+      debugPrint(reapose.data);
       return false;
     } else {
-      print(reapose.data);
+      debugPrint(reapose.data);
       AuthModel authModel = AuthModel.fromMap(
         reapose.data['data'],
       );
