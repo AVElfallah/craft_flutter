@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hyah_karima/router/app_router.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -33,13 +34,8 @@ class HomeAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Badge(
-            padding: const EdgeInsets.all(5),
-            backgroundColor: Colors.red,
-            // alignment: AlignmentDirectional.topEnd,
-            smallSize: 28,
-            largeSize: 28,
-            label: const Text(
+          badges.Badge(
+            badgeContent: const Text(
               "3",
               style: TextStyle(
                 color: Colors.white,
@@ -47,6 +43,7 @@ class HomeAppBar extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            position: badges.BadgePosition.topEnd(top: 0, end: 3),
             child: InkWell(
               onTap: () {
                 Navigator.pushNamed(

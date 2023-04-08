@@ -15,12 +15,14 @@ class SingUpAuth {
       ),
     );
 
-    var reapose = await dio.post("email=${user.email}&"
-        "password=${user.password}&"
-        "password_confirmation=${user.passwordConfirmation}&"
-        "user_name=${user.userName}&"
-        "phone_number=${user.phoneNumber}&"
-        "governorate_id=${2}");
+    var reapose = await dio.post(
+      "email=${user.email}&"
+      "password=${user.password}&"
+      "password_confirmation=${user.passwordConfirmation}&"
+      "user_name=${user.userName}&"
+      "phone_number=${user.phoneNumber}&"
+      "governorate_id=${2}",
+    );
 
     if (reapose.data['status'] == 0) {
       print(reapose.data);

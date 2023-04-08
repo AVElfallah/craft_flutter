@@ -38,6 +38,7 @@ class ClientModel {
     var govid = map['governorate_id'].runtimeType == String
         ? int.parse(map['governorate_id'])
         : map['governorate_id'];
+
     return ClientModel(
       id: map['id'] ?? 0,
       userName: map['user_name'] != null ? map['user_name'] as String : null,

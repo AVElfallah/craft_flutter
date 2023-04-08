@@ -118,11 +118,13 @@ class HomePage extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 1),
                     height: 70,
                     decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(
                           "images/20.png",
-                        ))),
+                        ),
+                      ),
+                    ),
                   ),
                   const Text(
                     "mariam wahba",

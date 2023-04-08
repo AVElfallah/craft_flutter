@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: MyRouter.routes,
       initialRoute:
-          authModel == null ? MyRouter.introScreen : MyRouter.homePage,
+          /*   authModel == null ? MyRouter.introScreen : */ MyRouter.homePage,
     );
   }
 }
