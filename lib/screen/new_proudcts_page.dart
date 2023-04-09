@@ -7,6 +7,7 @@ import 'package:hyah_karima/widget/item_bottom_navbar.dart';
 
 import '../widget/item_appbar.dart';
 
+//this is segad class
 class NewProudctsPage extends StatelessWidget {
   const NewProudctsPage({super.key});
 
