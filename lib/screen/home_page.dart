@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:hyah_karima/router/app_router.dart';
-
-import '../widget/home_appbar.dart';
+import 'package:badges/badges.dart' as badges;
 import '../widget/categories_widget.dart';
 import '../widget/items_widget.dart';
 
@@ -18,10 +17,54 @@ class HomePage extends StatelessWidget {
       // appBar: AppBar(
       //drawer: Drawer(),
       //  ),
-
+      appBar: AppBar(
+        title: const Text(
+          'HYAH KARIMA',
+          style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 7, 104, 142),
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        actions: [
+          badges.Badge(
+            badgeContent: const Text(
+              '3',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            position: badges.BadgePosition.topEnd(top: 0, end: 3),
+            child: IconButton(
+              icon: const Icon(
+                Icons.shopping_basket_outlined,
+                size: 32,
+                color: Color.fromARGB(255, 12, 88, 118),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  MyRouter.cartPage,
+                );
+              },
+            ),
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.list_rounded,
+            size: 30,
+            color: Color.fromARGB(255, 12, 88, 118),
+          ),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+      ),
       body: ListView(
         children: [
-          const HomeAppBar(),
           Container(
             //height: 500,
             padding: const EdgeInsets.only(top: 15),
