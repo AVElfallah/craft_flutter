@@ -19,21 +19,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool visible = true;
   Color x1 = const Color.fromARGB(255, 184, 5, 5);
-/////////////////////////////////////////////////////////
-
-  //final _formfield = GlobalKey<FormState>();
-  //void validate() {
-  // if (formKey.currentState!.validate()) {
-  //  debugPrint("ok");
-  // } else {
-  //   debugPrint("error");
-  // }
-  // }
-
-  Map<String, String> authdata = {
-    'e-mail': '',
-    'Password': '',
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                               hintStyle: TextStyle(fontSize: 20),
                             ),
                             validator: read.emailValidator,
-                            onSaved: (value) {
-                              authdata['e-mail'] = value!; //(!) null safty
-                              debugPrint(authdata['e-mail']);
-                            },
                           ),
                           const SizedBox(
                             height: 40,
@@ -184,7 +165,9 @@ class _LoginPageState extends State<LoginPage> {
                             height: 60,
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () => read.loginPressed(context),
+                              onPressed: () => read.loginPressed(
+                                context,
+                              ),
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
                                   Colors.white,
@@ -214,16 +197,48 @@ class _LoginPageState extends State<LoginPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
+                                "I Forgot My Password!",
+                                style: TextStyle(
+                                  color: Colors.grey.shade800,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacementNamed(
+                                    MyRouter.resetPassword,
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    Colors.white,
+                                  ),
+                                ),
+                                child: const Text(
+                                  ' Reset My Password',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(
+                                      255,
+                                      7,
+                                      104,
+                                      142,
+                                    ),
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
                                 "Don't have an account?",
                                 style: TextStyle(
-                                  color: Color.fromARGB(
-                                    255,
-                                    2,
-                                    2,
-                                    2,
-                                  ),
-                                  fontSize: 12,
+                                  color: Colors.grey.shade800,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
