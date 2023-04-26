@@ -23,7 +23,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 const SizedBox(
                   height: 130,
                 ),
-                Image.asset('images/15.png'),
+                Image.asset('images/88.png'),
                 SizedBox(
                   height: 60,
                   width: double.infinity,

@@ -9,7 +9,7 @@ class Categorieswidget extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (int i = 10; i < 14; i++)
+          for (int i = 1; i < 9; i++)
             Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 10,

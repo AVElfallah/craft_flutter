@@ -1,3 +1,8 @@
+import 'package:hyah_karima/screen/rate.dart';
+import 'package:hyah_karima/screen/review.dart';
+
+import 'package:hyah_karima/widget/welcome.dart';
+
 import '../screen/login_page.dart';
 import '../screen/cart_page.dart';
 import '../screen/fakhar_page.dart';
@@ -28,6 +33,9 @@ class MyRouter {
   static const String newProudctsPage = "/newproudcts_page";
   static const String likesPage = "/likes_page";
   static const String aboutWidget = "/about_page";
+  static const String welcome = "/welcome";
+  static const String Rate = "/rate";
+  static const String review = "/review";
 
   static final routes = {
     "/": (context) => const IntroScreen(),
@@ -44,5 +52,8 @@ class MyRouter {
     "/newproudcts_page": (context) => const NewProudctsPage(),
     "/likes_page": (context) => const LikesPage(),
     "/about_page": (context) => const AboutWidget(),
+    "/welcome": (context) => const Welcome(),
+    "/review": (context) => const Review(),
+    //"/rate": (context) => const Rate(),
   };
 }
