@@ -12,7 +12,7 @@ const String forgotPasswordAPI = "http://10.0.2.2:8000/api/v1/forget-password?";
 // reset password api url
 const String resetPasswordAPI = "http://10.0.2.2:8000/api/v1/reset-password?";
 
-
+RegExp emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
 /*
 
 SingUpAuth.instance.regesterNewUser(SingupModel(

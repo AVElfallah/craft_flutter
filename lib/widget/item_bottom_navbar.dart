@@ -55,8 +55,10 @@ class ItemBottomNavBar extends StatelessWidget {
                   const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30))),
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
               ),
             ),
           ],

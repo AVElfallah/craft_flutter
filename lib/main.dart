@@ -25,8 +25,13 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       routes: MyRouter.routes,
+<<<<<<< HEAD
       initialRoute: /*   authModel == null ? MyRouter.introScreen : */
           MyRouter.review,
+=======
+      initialRoute:
+          authModel == null ? MyRouter.introScreen : MyRouter.homePage,
+>>>>>>> 61b4781c06d3dde6bede1c647d8f45d8f685928e
     );
   }
 }
