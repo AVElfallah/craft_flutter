@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart' as urlLauncher;
+
 import 'package:hyah_karima/router/app_router.dart';
-import 'package:hyah_karima/router/forMap.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutWidget extends StatelessWidget {
   const AboutWidget({super.key});
@@ -181,10 +181,10 @@ class AboutWidget extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: (() async {
             // MapUtils.openMap(-3.823216, -38.481700);
-            final String googleMapsUrl =
-                'https://www.google.com/maps/search/?api=1&query=30.958592,31.2371792';
-            if (await canLaunch(googleMapsUrl)) {
-              await launch(googleMapsUrl);
+            final Uri googleMapsUrl = Uri.parse(
+                'https://www.google.com/maps/search/?api=1&query=30.958592,31.2371792');
+            if (await urlLauncher.canLaunchUrl(googleMapsUrl)) {
+              await urlLauncher.launchUrl(googleMapsUrl);
             } else {
               throw 'Could not open Google Maps';
             }
@@ -300,8 +300,12 @@ class AboutWidget extends StatelessWidget {
               const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30))),
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  30,
+                ),
+              ),
+            ),
           ),
         ),
       ],

@@ -1,9 +1,9 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:hyah_karima/extensions/constant.dart';
 
 class RestPassword {
+  //REVIEW - this is a singleton class
+  // wich is used to make connection more secure
   RestPassword._();
   static final RestPassword _restPassword = RestPassword._();
   static RestPassword get instance => _restPassword;

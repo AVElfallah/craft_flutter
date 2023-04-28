@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hyah_karima/model/auth_model.dart';
+import 'package:hyah_karima/data/internal/app_settings.dart';
 import 'package:hyah_karima/router/app_router.dart';
-
-import 'data/internal/user_login_data.dart';
 
 void main() async {
   await GetStorage.init('app_settings');
@@ -13,25 +11,22 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    AuthModel? authModel = UserAuthLoginData.instance.getAuthModelIfFound();
+    var isDark = AppSettingsData.instance.isDarkMode;
     return GetMaterialApp(
-      themeMode: ThemeMode.light,
+      debugShowCheckedModeBanner: false,
+      themeMode: isDark! ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      routes: MyRouter.routes,
-<<<<<<< HEAD
-      initialRoute: /*   authModel == null ? MyRouter.introScreen : */
-          MyRouter.review,
-=======
-      initialRoute:
-          authModel == null ? MyRouter.introScreen : MyRouter.homePage,
->>>>>>> 61b4781c06d3dde6bede1c647d8f45d8f685928e
+      onGenerateRoute: MyRouter.newRoutesSystem,
+      initialRoute: MyRouter.introScreen,
     );
   }
 }

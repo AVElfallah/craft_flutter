@@ -2,7 +2,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hyah_karima/screen/add_review_Bar.dart';
+import 'package:hyah_karima/screen/add_review_bar.dart';
 import 'package:hyah_karima/widget/button.dart';
 import 'package:intl/intl.dart';
 
@@ -26,33 +26,32 @@ class _Review extends State<Review> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        DateFormat.yMMMMd().format(
-                          DateTime.now(),
-                        ),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 12, 88, 118),
-                        ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      DateFormat.yMMMMd().format(
+                        DateTime.now(),
                       ),
-                      Text(
-                        "Today",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 12, 88, 118),
-                        ),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 12, 88, 118),
                       ),
-                    ],
-                  ),
+                    ),
+                    const Text(
+                      "Today",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 12, 88, 118),
+                      ),
+                    ),
+                  ],
                 ),
                 Mybutton(
-                    label: "+Add Review", onTap: () => Get.to(AddReviewPage())),
+                    label: "+Add Review",
+                    onTap: () => Get.to(const AddReviewPage())),
               ],
             ),
           ),
@@ -71,18 +70,18 @@ class _Review extends State<Review> {
         height: 100,
         width: 80,
         initialSelectedDate: DateTime.now(),
-        selectionColor: Color.fromARGB(111, 111, 222, 222),
+        selectionColor: const Color.fromARGB(111, 111, 222, 222),
         selectedTextColor: Colors.white,
         dateTextStyle: GoogleFonts.lato(
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
               fontSize: 20, fontWeight: FontWeight.w600, color: Colors.grey),
         ),
         dayTextStyle: GoogleFonts.lato(
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
         ),
         monthTextStyle: GoogleFonts.lato(
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey),
         ),
         onDateChange: (date) {

@@ -1,17 +1,17 @@
-<<<<<<< HEAD
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hyah_karima/screen/rate.dart';
 import 'package:hyah_karima/screen/review.dart';
 
 import 'package:hyah_karima/widget/welcome.dart';
-=======
 import 'package:hyah_karima/screen/reset_password/pincode_page.dart';
 import 'package:hyah_karima/screen/reset_password/reset_password_page.dart';
->>>>>>> 61b4781c06d3dde6bede1c647d8f45d8f685928e
 
+import '../middlewares/intro_screen_middleware.dart';
 import '../screen/login_page.dart';
 import '../screen/cart_page.dart';
 import '../screen/fakhar_page.dart';
-import '../screen/home_page.dart';
+import '../screen/home_page/home_page.dart';
 import '../screen/intro_page.dart';
 import '../screen/item_page.dart';
 import '../screen/likes_page.dart';
@@ -19,7 +19,7 @@ import '../screen/new_proudcts_page.dart';
 import '../screen/order_page.dart';
 
 import '../screen/profile_screen.dart';
-import '../screen/settings_page.dart';
+import '../screen/home_page/layouts/settings_page.dart';
 import '../screen/signup_page.dart';
 import '../widget/about_widget.dart';
 
@@ -38,14 +38,112 @@ class MyRouter {
   static const String newProudctsPage = "/newproudcts_page";
   static const String likesPage = "/likes_page";
   static const String aboutWidget = "/about_page";
-<<<<<<< HEAD
   static const String welcome = "/welcome";
-  static const String Rate = "/rate";
+  static const String rate = "/rate";
   static const String review = "/review";
-=======
   static const String resetPassword = "/reset_password";
->>>>>>> 61b4781c06d3dde6bede1c647d8f45d8f685928e
 
+  static Route newRoutesSystem(settings) {
+    switch (settings.name) {
+      //REVIEW - intro screen path
+      //NOTE - in this case intro screen will be the first screen to show if user is not authenticated
+      case '/':
+        return IntroScreenMiddleware().reRouting();
+      case '/pin_screen':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const PincodePage(),
+        );
+      case '/login_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const LoginPage(),
+        );
+      case '/singup_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const SingupPage(),
+        );
+      case '/home_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const HomePage(),
+        );
+      case '/cart_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const Cartpage(),
+        );
+      case '/item_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const ItemPage(),
+        );
+      case '/order_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const OrderPage(),
+        );
+      case '/profile_screen':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const ProfileScreen(),
+        );
+      case '/settings_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const SettingsPage(),
+        );
+      case '/fakhar_item':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const Fakharitem(),
+        );
+      case '/newproudcts_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const NewProudctsPage(),
+        );
+      case '/likes_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const LikesPage(),
+        );
+      case '/about_page':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const AboutWidget(),
+        );
+      case '/welcome':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const Welcome(),
+        );
+      case '/review':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const Review(),
+        );
+      case '/rate':
+        return GetPageRoute(
+          settings: settings,
+          page: () => Rate(),
+        );
+      case '/reset_password':
+        return GetPageRoute(
+          settings: settings,
+          page: () => const ResetPasswordPage(),
+        );
+      default:
+        return GetPageRoute(
+          settings: settings,
+          page: () => const IntroScreen(),
+        );
+    }
+  }
+
+  @Deprecated(
+      "this is the old routes system \n and this will be removed in the next update \n please use the new routes system")
   static final routes = {
     "/": (context) => const IntroScreen(),
     "/pin_screen": (ontext) => const PincodePage(),
@@ -61,12 +159,9 @@ class MyRouter {
     "/newproudcts_page": (context) => const NewProudctsPage(),
     "/likes_page": (context) => const LikesPage(),
     "/about_page": (context) => const AboutWidget(),
-<<<<<<< HEAD
     "/welcome": (context) => const Welcome(),
     "/review": (context) => const Review(),
-    //"/rate": (context) => const Rate(),
-=======
+    "/rate": (context) => Rate(),
     "/reset_password": (context) => const ResetPasswordPage(),
->>>>>>> 61b4781c06d3dde6bede1c647d8f45d8f685928e
   };
 }

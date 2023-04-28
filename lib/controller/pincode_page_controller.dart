@@ -1,7 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hyah_karima/data/external/rest_password.dart';
+import 'package:hyah_karima/router/app_router.dart';
 
 class PincodePageController extends ChangeNotifier {
   TextEditingController pin1 = TextEditingController();
@@ -97,7 +99,9 @@ class PincodePageController extends ChangeNotifier {
             ),
           ),
         );
-        Navigator.of(context).pop();
+        Get.offAndToNamed(
+          MyRouter.introScreen,
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

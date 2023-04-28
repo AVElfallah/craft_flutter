@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hyah_karima/controller/reset_password_controller.dart';
-import 'package:hyah_karima/router/app_router.dart';
 import 'package:provider/provider.dart';
 
 class ResetPasswordPage extends StatelessWidget {

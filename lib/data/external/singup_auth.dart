@@ -15,26 +15,30 @@ class SingUpAuth {
         baseUrl: registerAPI,
       ),
     );
-
-    var reapose = await dio.post(
-      "email=${user.email}&"
-      "password=${user.password}&"
-      "password_confirmation=${user.passwordConfirmation}&"
-      "user_name=${user.userName}&"
-      "phone_number=${user.phoneNumber}&"
-      "governorate_id=${2}",
-    );
-
-    if (reapose.data['status'] == 0) {
-      debugPrint(reapose.data);
-      return false;
-    } else {
-      debugPrint(reapose.data);
-      AuthModel authModel = AuthModel.fromMap(
-        reapose.data['data'],
+    try {
+      var reapose = await dio.post(
+        "email=${user.email}&"
+        "password=${user.password}&"
+        "password_confirmation=${user.passwordConfirmation}&"
+        "user_name=${user.userName}&"
+        "phone_number=${user.phoneNumber}&"
+        "governorate_id=${2}",
       );
+      debugPrint(reapose.data.toString());
+      if (reapose.data['status'] == 0) {
+        debugPrint(reapose.data);
+        return false;
+      } else {
+        debugPrint(reapose.data.toString());
+        AuthModel authModel = AuthModel.fromMap(
+          reapose.data['data'],
+        );
 
-      return authModel;
+        return authModel;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
     }
   }
 }

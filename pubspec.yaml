@@ -51,6 +51,7 @@ dependencies:
   intl:
   google_fonts:
   date_picker_timeline:
+  webview_flutter: ^4.2.0
 
 dev_dependencies:
   flutter_test:

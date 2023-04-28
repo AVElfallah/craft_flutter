@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widget/home_appbar.dart';
-
 class AddReviewPage extends StatelessWidget {
   const AddReviewPage({
     Key? key,
@@ -14,10 +12,10 @@ class AddReviewPage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: const [
               Text(
                 "Add review",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 12, 88, 118),
