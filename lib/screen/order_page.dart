@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:hyah_karima/data/external/cart_database.dart';
 
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
+import '../controller/order_controller.dart';
+import '../extensions/governrates.dart';
+import '../model/order_model.dart';
+import '../widget/reusable_text_field.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -11,63 +15,21 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-  late TextEditingController nameController;
-
-  late TextEditingController lastController;
-
-  late TextEditingController emailController;
-
-  late TextEditingController phoneController;
-
-  late TextEditingController idController;
-
-  late TextEditingController visaController;
-  @override
-  void initState() {
-    super.initState();
-    nameController = TextEditingController();
-
-    lastController = TextEditingController();
-
-    emailController = TextEditingController();
-
-    phoneController = TextEditingController();
-
-    idController = TextEditingController();
-
-    visaController = TextEditingController();
-  }
-
-  final formKey = GlobalKey<FormState>();
+  var ctrl = OrderController.put;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: formKey,
-        child: ListView(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.all(15),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(
-                  Icons.arrow_back,
-                  size: 30,
-                  color: Color.fromARGB(255, 12, 88, 118),
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
+    return GetBuilder(
+      init: ctrl,
+      builder: (_) {
+        return Scaffold(
+          body: Form(
+            key: ctrl.formKey,
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  pinned: true,
+                  title: const Text(
                     "Confirm Order",
                     style: TextStyle(
                       fontSize: 25,
@@ -75,174 +37,166 @@ class _OrderPageState extends State<OrderPage> {
                       color: Color.fromARGB(255, 12, 88, 118),
                     ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: " First Name"),
-                    validator: (value) =>
-                        value!.isNotEmpty ? null : "Empty Text",
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: lastController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: "  Last Name"),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: "  E-mail"),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: phoneController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: "  phoneNumber"),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: idController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: "  national Id"),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 15, top: 20),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffEDECF2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: 370,
-                  child: TextFormField(
-                    controller: idController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(fontSize: 20),
-                        hintText: "  Visa Card"),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () async {
-                    if (formKey.currentState!.validate()) {
-                      final message = Message()
-                        ..from = const Address(
-                            'wahbamariam812@gmail.com', 'hyah karima')
-                        ..recipients.add(emailController.text)
-                        ..subject = 'Herftna Project In egypt  '
-                        ..text = """ 
-    
-Thank you for your shopping from our store
-   Mr /${nameController.text} 
-
-Dear customer, we hope to be your trust in us
-You have purchased the number 1233459
-The value of the purchase is 300 pounds, 
-and payment is made upon receiving the order
-(Receipt date within seven days)
-
-
-We hope the purchase will be repeated """;
-
-                      // Create the SMTP server.
-                      final smtpServer =
-                          gmail('wahbamariam812@gmail.com', 'zkhqrpoviewejwfs');
-
-                      try {
-                        // Send the email.
-                        final sendReport = await send(message, smtpServer);
-                        debugPrint('Message sent: ${sendReport.toString()}');
-                      } on MailerException catch (e) {
-                        debugPrint('Message not sent.');
-                        debugPrint(e.message);
-                      }
-                    }
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 20),
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 7, 75, 109),
-                      borderRadius: BorderRadius.circular(10),
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  leading: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                      color: Color.fromARGB(255, 12, 88, 118),
                     ),
-                    child: const Text(
-                      "Order Now",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        ReusableTextField(
+                          controller: ctrl.firstNameController,
+                          hintText: "First Name",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.lastNameController,
+                          hintText: "Last Name",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.emailController,
+                          hintText: "E-mail",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.phoneController,
+                          hintText: "Phone Number",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.companyNameController,
+                          hintText: "Company Name",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 15, top: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 1),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffEDECF2),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          width: 370,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: DropdownButton<int>(
+                              underline: const SizedBox.shrink(),
+                              isExpanded: true,
+                              menuMaxHeight:
+                                  MediaQuery.of(context).size.height * .65,
+                              borderRadius: BorderRadius.circular(
+                                25,
+                              ),
+                              value: ctrl.governorateValue,
+                              iconSize: 35,
+                              hint: const Text(
+                                'Choose your Governorate',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              items: governrateList
+                                  .map<DropdownMenuItem<int>>(
+                                    (e) => DropdownMenuItem<int>(
+                                      value: e.number!,
+                                      child: Text(
+                                        e.englishName!,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: ctrl.changeGovernorateValue,
+                            ),
+                          ),
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.postCodeController,
+                          hintText: "Postal Code",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.addressController,
+                          hintText: "Address",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.cityController,
+                          hintText: "City",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.countryStateController,
+                          hintText: "Country State",
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        ReusableTextField(
+                          controller: ctrl.notesController,
+                          hintText: "Write some notes here",
+                          isNote: true,
+                          validator: (value) =>
+                              value!.isNotEmpty ? null : "Empty Text",
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            ctrl.submitOrder(Navigator.of(context));
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 20),
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 7, 75, 109),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Text(
+                              "Order Now",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

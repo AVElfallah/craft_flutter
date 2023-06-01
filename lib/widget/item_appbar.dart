@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controller/item_page_controller.dart';
+import '../controller/items_preview_controller.dart';
 
 class ItemAppBar extends StatelessWidget {
   const ItemAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var ctrl = Get.find<ItemPageController>(tag: 'itemPageController');
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.all(25),
@@ -32,10 +37,17 @@ class ItemAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Icon(
-            Icons.favorite,
-            size: 30,
-            color: Colors.red,
+          Obx(
+            () => IconButton(
+              onPressed: () {
+                ctrl.addToFav();
+              },
+              icon: Icon(
+                Icons.favorite,
+                size: 30,
+                color: ctrl.isFav.value ? Colors.red : Colors.grey,
+              ),
+            ),
           ),
         ],
       ),

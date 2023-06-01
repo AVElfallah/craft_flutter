@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.6 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -48,10 +48,13 @@ dependencies:
   get_storage: ^2.1.1
   get:
   animated_text_kit: 
+  paginated_search_bar: ^1.1.2
   intl:
   google_fonts:
   date_picker_timeline:
   webview_flutter: ^4.2.0
+  cached_network_image: ^3.2.3
+  banner_listtile: ^2.3.0
 
 dev_dependencies:
   flutter_test:

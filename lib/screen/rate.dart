@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Rate extends StatefulWidget {
+  const Rate({super.key});
+
   @override
   _Rate createState() => _Rate();
 }

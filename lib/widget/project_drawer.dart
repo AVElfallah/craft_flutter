@@ -95,18 +95,9 @@ class _ProjectDrawerWidgetState extends State<ProjectDrawerWidget> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              homePageController.changeIndex(2);
+              homePageController.changeIndex(3);
               Navigator.pop(context);
             },
-          ),
-          const Divider(height: 20, thickness: 1),
-          ListTile(
-            leading: const Icon(Icons.privacy_tip),
-            title: const Text(
-              "Privacy and secuirty",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            onTap: () {},
           ),
           const Divider(height: 20, thickness: 1),
           ListTile(

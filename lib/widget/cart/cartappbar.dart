@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/cart_page_controller.dart';
 
 class CartAppBar extends StatelessWidget {
   const CartAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var ctrl = Get.find<CartPageController>(tag: 'CartPageController');
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.all(25),
@@ -14,11 +18,10 @@ class CartAppBar extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
             },
-            // ignore: prefer_const_constructors
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
               size: 30,
-              color: const Color.fromARGB(255, 12, 88, 118),
+              color: Color.fromARGB(255, 12, 88, 118),
             ),
           ),
           const Padding(
@@ -33,11 +36,16 @@ class CartAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Icon(
-            Icons.notification_add,
-            size: 30,
-            color: Color.fromARGB(255, 12, 88, 118),
-          ),
+          IconButton(
+            onPressed: () {
+              ctrl.cartEmpty();
+            },
+            icon: const Icon(
+              Icons.delete,
+              size: 30,
+              color: Colors.red,
+            ),
+          )
         ],
       ),
     );

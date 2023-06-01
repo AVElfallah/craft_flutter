@@ -10,18 +10,15 @@ import 'package:hyah_karima/screen/reset_password/reset_password_page.dart';
 import '../middlewares/intro_screen_middleware.dart';
 import '../screen/login_page.dart';
 import '../screen/cart_page.dart';
-import '../screen/fakhar_page.dart';
 import '../screen/home_page/home_page.dart';
 import '../screen/intro_page.dart';
 import '../screen/item_page.dart';
 import '../screen/likes_page.dart';
-import '../screen/new_proudcts_page.dart';
 import '../screen/order_page.dart';
 
 import '../screen/profile_screen.dart';
 import '../screen/home_page/layouts/settings_page.dart';
 import '../screen/signup_page.dart';
-import '../widget/about_widget.dart';
 
 class MyRouter {
   static const String introScreen = "/";
@@ -34,10 +31,7 @@ class MyRouter {
   static const String orderPage = "/order_page";
   static const String profileScreen = "/profile_screen";
   static const String settingsPage = "/settings_page";
-  static const String fakharItem = "/fakhar_item";
-  static const String newProudctsPage = "/newproudcts_page";
   static const String likesPage = "/likes_page";
-  static const String aboutWidget = "/about_page";
   static const String welcome = "/welcome";
   static const String rate = "/rate";
   static const String review = "/review";
@@ -94,26 +88,13 @@ class MyRouter {
           settings: settings,
           page: () => const SettingsPage(),
         );
-      case '/fakhar_item':
-        return GetPageRoute(
-          settings: settings,
-          page: () => const Fakharitem(),
-        );
-      case '/newproudcts_page':
-        return GetPageRoute(
-          settings: settings,
-          page: () => const NewProudctsPage(),
-        );
+
       case '/likes_page':
         return GetPageRoute(
           settings: settings,
-          page: () => const LikesPage(),
+          page: () => const FavPage(),
         );
-      case '/about_page':
-        return GetPageRoute(
-          settings: settings,
-          page: () => const AboutWidget(),
-        );
+
       case '/welcome':
         return GetPageRoute(
           settings: settings,
@@ -127,7 +108,7 @@ class MyRouter {
       case '/rate':
         return GetPageRoute(
           settings: settings,
-          page: () => Rate(),
+          page: () => const Rate(),
         );
       case '/reset_password':
         return GetPageRoute(
@@ -155,13 +136,10 @@ class MyRouter {
     "/order_page": (context) => const OrderPage(),
     "/profile_screen": (context) => const ProfileScreen(),
     "/settings_page": (context) => const SettingsPage(),
-    "/fakhar_item": (ontext) => const Fakharitem(),
-    "/newproudcts_page": (context) => const NewProudctsPage(),
-    "/likes_page": (context) => const LikesPage(),
-    "/about_page": (context) => const AboutWidget(),
+    "/likes_page": (context) => const FavPage(),
     "/welcome": (context) => const Welcome(),
     "/review": (context) => const Review(),
-    "/rate": (context) => Rate(),
+    "/rate": (context) => const Rate(),
     "/reset_password": (context) => const ResetPasswordPage(),
   };
 }

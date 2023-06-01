@@ -8,6 +8,13 @@ List<Color> colorsToUse = [
   Colors.orange,
 ];
 
+const Color primaryColor = Color.fromARGB(
+  255,
+  12,
+  88,
+  118,
+);
+
 Color iconsColor = const Color.fromARGB(
   255,
   1,

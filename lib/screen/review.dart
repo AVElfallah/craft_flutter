@@ -1,9 +1,6 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hyah_karima/screen/add_review_bar.dart';
-import 'package:hyah_karima/widget/button.dart';
 import 'package:intl/intl.dart';
 
 class Review extends StatefulWidget {
@@ -14,7 +11,6 @@ class Review extends StatefulWidget {
 }
 
 class _Review extends State<Review> {
-  DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +45,9 @@ class _Review extends State<Review> {
                     ),
                   ],
                 ),
-                Mybutton(
+                /*  Mybutton(
                     label: "+Add Review",
-                    onTap: () => Get.to(const AddReviewPage())),
+                    onTap: () => Get.to(const AddReviewPage())), */
               ],
             ),
           ),
@@ -84,9 +80,7 @@ class _Review extends State<Review> {
           textStyle: const TextStyle(
               fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey),
         ),
-        onDateChange: (date) {
-          _selectedDate = date;
-        },
+        onDateChange: (date) {},
       ),
     );
   }

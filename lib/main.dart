@@ -24,6 +24,12 @@ class MyApp extends StatelessWidget {
       themeMode: isDark! ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Colors.grey[900],
+          contentTextStyle: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       onGenerateRoute: MyRouter.newRoutesSystem,
       initialRoute: MyRouter.introScreen,
